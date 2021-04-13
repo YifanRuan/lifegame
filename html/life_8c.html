@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>生命游戏: life.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">生命游戏
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">life.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>生命游戏源文件  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;conio.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a05b49c662c073f89e86804f7856622a0"><td class="memItemLeft" align="right" valign="top"><a id="a05b49c662c073f89e86804f7856622a0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a05b49c662c073f89e86804f7856622a0">LEN</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memdesc:a05b49c662c073f89e86804f7856622a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">字符串最大长度。 <br /></td></tr>
+<tr class="separator:a05b49c662c073f89e86804f7856622a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940b85a83458e94519f2685b33ddd276"><td class="memItemLeft" align="right" valign="top"><a id="a940b85a83458e94519f2685b33ddd276"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>&#160;&#160;&#160;120</td></tr>
+<tr class="memdesc:a940b85a83458e94519f2685b33ddd276"><td class="mdescLeft">&#160;</td><td class="mdescRight">地图最大长宽。 <br /></td></tr>
+<tr class="separator:a940b85a83458e94519f2685b33ddd276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a798ec5e0449028e485688e8241b5e"><td class="memItemLeft" align="right" valign="top"><a id="ae8a798ec5e0449028e485688e8241b5e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HELP</b>&#160;&#160;&#160;&quot;\\h&quot;</td></tr>
+<tr class="separator:ae8a798ec5e0449028e485688e8241b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b674752cca6d434a1a69f40877eb2be"><td class="memItemLeft" align="right" valign="top"><a id="a0b674752cca6d434a1a69f40877eb2be"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOAD</b>&#160;&#160;&#160;&quot;\\l&quot;</td></tr>
+<tr class="separator:a0b674752cca6d434a1a69f40877eb2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2868d85c8a74e3ee08bdc44580e2235"><td class="memItemLeft" align="right" valign="top"><a id="ab2868d85c8a74e3ee08bdc44580e2235"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SAVE</b>&#160;&#160;&#160;&quot;\\s&quot;</td></tr>
+<tr class="separator:ab2868d85c8a74e3ee08bdc44580e2235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a642a7feaec09dc61a5c34b7bdc2977"><td class="memItemLeft" align="right" valign="top"><a id="a9a642a7feaec09dc61a5c34b7bdc2977"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DESIGN</b>&#160;&#160;&#160;&quot;\\d&quot;</td></tr>
+<tr class="separator:a9a642a7feaec09dc61a5c34b7bdc2977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf470cbbab24f2dfe963f889ba2231d1"><td class="memItemLeft" align="right" valign="top"><a id="acf470cbbab24f2dfe963f889ba2231d1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GENERATE</b>&#160;&#160;&#160;&quot;\\g&quot;</td></tr>
+<tr class="separator:acf470cbbab24f2dfe963f889ba2231d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f69a612b07bbf1de53bbbd8d877c09"><td class="memItemLeft" align="right" valign="top"><a id="a35f69a612b07bbf1de53bbbd8d877c09"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RUN</b>&#160;&#160;&#160;&quot;\\r&quot;</td></tr>
+<tr class="separator:a35f69a612b07bbf1de53bbbd8d877c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad111e603bbebe5d87f6bc39264ce4733"><td class="memItemLeft" align="right" valign="top"><a id="ad111e603bbebe5d87f6bc39264ce4733"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXIT</b>&#160;&#160;&#160;&quot;\\e&quot;</td></tr>
+<tr class="separator:ad111e603bbebe5d87f6bc39264ce4733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad24e2b54375e12474e65ebf7175988fb"><td class="memItemLeft" align="right" valign="top"><a id="ad24e2b54375e12474e65ebf7175988fb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>QUIT</b>&#160;&#160;&#160;&quot;\\q&quot;</td></tr>
+<tr class="separator:ad24e2b54375e12474e65ebf7175988fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b43bafee90b30676faae508c21cb8d7"><td class="memItemLeft" align="right" valign="top"><a id="a8b43bafee90b30676faae508c21cb8d7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PRINT</b>&#160;&#160;&#160;&quot;\\p&quot;</td></tr>
+<tr class="separator:a8b43bafee90b30676faae508c21cb8d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29fd18bed01c4d836c7ebfe73a125c3f"><td class="memItemLeft" align="right" valign="top"><a id="a29fd18bed01c4d836c7ebfe73a125c3f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>END</b>&#160;&#160;&#160;&quot;end&quot;</td></tr>
+<tr class="separator:a29fd18bed01c4d836c7ebfe73a125c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7cf2a3641be7b89138615764d60ba3"><td class="memItemLeft" align="right" valign="top"><a id="a2b7cf2a3641be7b89138615764d60ba3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>EMPTY</b>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:a2b7cf2a3641be7b89138615764d60ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a4cfffc897298de737eef6e9e8bbb7346"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a4cfffc897298de737eef6e9e8bbb7346">get_input</a> (char *buf)</td></tr>
+<tr class="memdesc:a4cfffc897298de737eef6e9e8bbb7346"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取一整行输入字符串。长度不大于1024。  <a href="life_8c.html#a4cfffc897298de737eef6e9e8bbb7346">更多...</a><br /></td></tr>
+<tr class="separator:a4cfffc897298de737eef6e9e8bbb7346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ee70a8770dc30d06c744b24eb2fcfc"><td class="memItemLeft" align="right" valign="top"><a id="a97ee70a8770dc30d06c744b24eb2fcfc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a97ee70a8770dc30d06c744b24eb2fcfc">help</a> ()</td></tr>
+<tr class="memdesc:a97ee70a8770dc30d06c744b24eb2fcfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示帮助界面。 <br /></td></tr>
+<tr class="separator:a97ee70a8770dc30d06c744b24eb2fcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a236e454e493fc9b262f746305660a2eb"><td class="memItemLeft" align="right" valign="top"><a id="a236e454e493fc9b262f746305660a2eb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a236e454e493fc9b262f746305660a2eb">welcome</a> ()</td></tr>
+<tr class="memdesc:a236e454e493fc9b262f746305660a2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示初始欢迎界面。 <br /></td></tr>
+<tr class="separator:a236e454e493fc9b262f746305660a2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fcf8e653c00c0a041cf92ee92fa36e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a6fcf8e653c00c0a041cf92ee92fa36e1">get_command</a> (char *cmd, char *buf, char *filename)</td></tr>
+<tr class="memdesc:a6fcf8e653c00c0a041cf92ee92fa36e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">将一个字符串分解为两个部分。第一个部分为去掉空白字符后的头部到第一个空白字符或尾部之前。第二个部分为第一个空白字符后到尾部去掉空白字符之前。可用于分解命令，获取两个整数等。当分解命令时，可用于处理带空格的文件名及路径。当获取两个整数时，可通过一系列判断来确保输入一定是两个整数。  <a href="life_8c.html#a6fcf8e653c00c0a041cf92ee92fa36e1">更多...</a><br /></td></tr>
+<tr class="separator:a6fcf8e653c00c0a041cf92ee92fa36e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bebc9a58bc4dfbc55423280f0df9a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a9bebc9a58bc4dfbc55423280f0df9a73">load_map</a> (char *filename)</td></tr>
+<tr class="memdesc:a9bebc9a58bc4dfbc55423280f0df9a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载本地地图。如果因系统原因或输入原因无法加载，报无文件错误。如果文件内行数与列数不合法或超过范围，报错。对于各细胞的存活情况。读取浮点数，大于0则读取为存活，否则读取为死亡。读取至已经读取结束或文件尾部。读取完成时，剩下细胞默认死亡。  <a href="life_8c.html#a9bebc9a58bc4dfbc55423280f0df9a73">更多...</a><br /></td></tr>
+<tr class="separator:a9bebc9a58bc4dfbc55423280f0df9a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f84fe91ac81c1c307bdefa4566aa7e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a4f84fe91ac81c1c307bdefa4566aa7e0">save_map</a> (char *filename)</td></tr>
+<tr class="memdesc:a4f84fe91ac81c1c307bdefa4566aa7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存地图至本地。如无地图则报错退出。可能因系统原因保存失败。  <a href="life_8c.html#a4f84fe91ac81c1c307bdefa4566aa7e0">更多...</a><br /></td></tr>
+<tr class="separator:a4f84fe91ac81c1c307bdefa4566aa7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cac6a3c13639cb7d47ee4daab1c8efa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a2cac6a3c13639cb7d47ee4daab1c8efa">convert_lower_case</a> (char *s)</td></tr>
+<tr class="memdesc:a2cac6a3c13639cb7d47ee4daab1c8efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">将输入的字符串s中的字母全转换为小写。  <a href="life_8c.html#a2cac6a3c13639cb7d47ee4daab1c8efa">更多...</a><br /></td></tr>
+<tr class="separator:a2cac6a3c13639cb7d47ee4daab1c8efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a567b69dd2bf9ca104c58f96d5c7d89e5"><td class="memItemLeft" align="right" valign="top"><a id="a567b69dd2bf9ca104c58f96d5c7d89e5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a567b69dd2bf9ca104c58f96d5c7d89e5">generate_next_status</a> ()</td></tr>
+<tr class="memdesc:a567b69dd2bf9ca104c58f96d5c7d89e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">生成下一代细胞图。先计算各细胞周围存货细胞数，再根据游戏规则更新细胞图。 <br /></td></tr>
+<tr class="separator:a567b69dd2bf9ca104c58f96d5c7d89e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc3df93f3885672340a3ee4ec133fad"><td class="memItemLeft" align="right" valign="top"><a id="afbc3df93f3885672340a3ee4ec133fad"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#afbc3df93f3885672340a3ee4ec133fad">print_map</a> ()</td></tr>
+<tr class="memdesc:afbc3df93f3885672340a3ee4ec133fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">打印地图。如已有地图，则打印。否则输出无地图错误。 <br /></td></tr>
+<tr class="separator:afbc3df93f3885672340a3ee4ec133fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac770c0e1acdfb0e1deffc3e152f71454"><td class="memItemLeft" align="right" valign="top"><a id="ac770c0e1acdfb0e1deffc3e152f71454"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#ac770c0e1acdfb0e1deffc3e152f71454">design_map</a> ()</td></tr>
+<tr class="memdesc:ac770c0e1acdfb0e1deffc3e152f71454"><td class="mdescLeft">&#160;</td><td class="mdescRight">进入地图设计模式。运用循环进行用户输入，用 is_design 判断输入为行列数还是坐标位置。用户输入需为小于120的整数。有非法输入与输入数过大两种输入错误。设计结束后提示用户保存。 <br /></td></tr>
+<tr class="separator:ac770c0e1acdfb0e1deffc3e152f71454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae388226bdd31b19c663fe42045db93cc"><td class="memItemLeft" align="right" valign="top"><a id="ae388226bdd31b19c663fe42045db93cc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#ae388226bdd31b19c663fe42045db93cc">auto_run</a> ()</td></tr>
+<tr class="memdesc:ae388226bdd31b19c663fe42045db93cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">进入自动运行模式。无地图则退出。用 is_run 标记运行状态，1为正在运行，0为正在暂停。自动运行间隔2秒，每次生成前清屏，键入 ENTER 后暂停。暂停时键入 ENTER 继续，键入 [<em></em>] 退出该模式，其它为输入错误。 <br /></td></tr>
+<tr class="separator:ae388226bdd31b19c663fe42045db93cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c15356c82676b3724761c1eef774e9f"><td class="memItemLeft" align="right" valign="top"><a id="a7c15356c82676b3724761c1eef774e9f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a7c15356c82676b3724761c1eef774e9f">is_map_error</a> ()</td></tr>
+<tr class="memdesc:a7c15356c82676b3724761c1eef774e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">输出无地图错误信息，并提示用户可导入地图或自定义地图。 <br /></td></tr>
+<tr class="separator:a7c15356c82676b3724761c1eef774e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58ee32116eb4f576241ffa58d67adb96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#a58ee32116eb4f576241ffa58d67adb96">count_alive_neighbors</a> (int x, int y)</td></tr>
+<tr class="memdesc:a58ee32116eb4f576241ffa58d67adb96"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算地图上某点周围存活细胞的数量。对边界情况分类讨论。  <a href="life_8c.html#a58ee32116eb4f576241ffa58d67adb96">更多...</a><br /></td></tr>
+<tr class="separator:a58ee32116eb4f576241ffa58d67adb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:af1d3cff2e4538e23400e260bae3dadad"><td class="memItemLeft" align="right" valign="top"><a id="af1d3cff2e4538e23400e260bae3dadad"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#af1d3cff2e4538e23400e260bae3dadad">row</a> = 0</td></tr>
+<tr class="memdesc:af1d3cff2e4538e23400e260bae3dadad"><td class="mdescLeft">&#160;</td><td class="mdescRight">地图行数。 <br /></td></tr>
+<tr class="separator:af1d3cff2e4538e23400e260bae3dadad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb52e720f5f0c483db5861f9e42e924e"><td class="memItemLeft" align="right" valign="top"><a id="afb52e720f5f0c483db5861f9e42e924e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#afb52e720f5f0c483db5861f9e42e924e">col</a> = 0</td></tr>
+<tr class="memdesc:afb52e720f5f0c483db5861f9e42e924e"><td class="mdescLeft">&#160;</td><td class="mdescRight">地图列数。 <br /></td></tr>
+<tr class="separator:afb52e720f5f0c483db5861f9e42e924e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affea0872ffa64efbbf353d129f90c61c"><td class="memItemLeft" align="right" valign="top"><a id="affea0872ffa64efbbf353d129f90c61c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#affea0872ffa64efbbf353d129f90c61c">is_map</a> = 0</td></tr>
+<tr class="memdesc:affea0872ffa64efbbf353d129f90c61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">标记，判断程序中是否已有地图。 <br /></td></tr>
+<tr class="separator:affea0872ffa64efbbf353d129f90c61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ee1abf7f38b4abbcdcc733fba25c11"><td class="memItemLeft" align="right" valign="top"><a id="ac5ee1abf7f38b4abbcdcc733fba25c11"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#ac5ee1abf7f38b4abbcdcc733fba25c11">map</a> [<a class="el" href="life_8c.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>][<a class="el" href="life_8c.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>]</td></tr>
+<tr class="memdesc:ac5ee1abf7f38b4abbcdcc733fba25c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">全局地图数组。 <br /></td></tr>
+<tr class="separator:ac5ee1abf7f38b4abbcdcc733fba25c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51de6553d6c7d364d0973b56735a5a5"><td class="memItemLeft" align="right" valign="top"><a id="ab51de6553d6c7d364d0973b56735a5a5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="life_8c.html#ab51de6553d6c7d364d0973b56735a5a5">alive_neighbors</a> [<a class="el" href="life_8c.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>][<a class="el" href="life_8c.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>]</td></tr>
+<tr class="memdesc:ab51de6553d6c7d364d0973b56735a5a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">相邻存活细胞数量。 <br /></td></tr>
+<tr class="separator:ab51de6553d6c7d364d0973b56735a5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>生命游戏源文件 </p>
+<dl class="section author"><dt>作者</dt><dd>阮毅凡 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2020-12-26</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2020 </dd></dl>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a2cac6a3c13639cb7d47ee4daab1c8efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cac6a3c13639cb7d47ee4daab1c8efa">&#9670;&nbsp;</a></span>convert_lower_case()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void convert_lower_case </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将输入的字符串s中的字母全转换为小写。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>需要转换的字符串 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a58ee32116eb4f576241ffa58d67adb96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58ee32116eb4f576241ffa58d67adb96">&#9670;&nbsp;</a></span>count_alive_neighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int count_alive_neighbors </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算地图上某点周围存活细胞的数量。对边界情况分类讨论。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>x坐标 </td></tr>
+    <tr><td class="paramname">y</td><td>y坐标 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>int 该点周围存活细胞的数量 </dd></dl>
+
+</div>
+</div>
+<a id="a6fcf8e653c00c0a041cf92ee92fa36e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fcf8e653c00c0a041cf92ee92fa36e1">&#9670;&nbsp;</a></span>get_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_command </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将一个字符串分解为两个部分。第一个部分为去掉空白字符后的头部到第一个空白字符或尾部之前。第二个部分为第一个空白字符后到尾部去掉空白字符之前。可用于分解命令，获取两个整数等。当分解命令时，可用于处理带空格的文件名及路径。当获取两个整数时，可通过一系列判断来确保输入一定是两个整数。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>输入的命令（通常为获取的一整行字符串） </td></tr>
+    <tr><td class="paramname">buf</td><td>分解的第一个字符串 </td></tr>
+    <tr><td class="paramname">filename</td><td>分解的第二个字符串 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4cfffc897298de737eef6e9e8bbb7346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cfffc897298de737eef6e9e8bbb7346">&#9670;&nbsp;</a></span>get_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_input </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取一整行输入字符串。长度不大于1024。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>输入字符串存放位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9bebc9a58bc4dfbc55423280f0df9a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bebc9a58bc4dfbc55423280f0df9a73">&#9670;&nbsp;</a></span>load_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void load_map </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>加载本地地图。如果因系统原因或输入原因无法加载，报无文件错误。如果文件内行数与列数不合法或超过范围，报错。对于各细胞的存活情况。读取浮点数，大于0则读取为存活，否则读取为死亡。读取至已经读取结束或文件尾部。读取完成时，剩下细胞默认死亡。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>需要加载的文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4f84fe91ac81c1c307bdefa4566aa7e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f84fe91ac81c1c307bdefa4566aa7e0">&#9670;&nbsp;</a></span>save_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void save_map </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存地图至本地。如无地图则报错退出。可能因系统原因保存失败。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>需要保存的文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>
